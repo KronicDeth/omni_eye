@@ -5,17 +5,8 @@
 # is restricted to this project.
 use Mix.Config
 
-config :eye, port: 80
-
-config :picam, camera: Picam.Camera
-
-config :logger,
-  level: :info,
-  utc_log: true
-
-config :logger, :console,
-  level: :info,
-  format: "$dateT$time [$level] $message\n"
+# Pull in the base configuration from the `eye_ui` application.
+import_config "../../eye_ui/config/base.exs"
 
 # Customize the firmware. Uncomment all or parts of the following
 # to add files to the root filesystem or modify the firmware
@@ -25,6 +16,7 @@ config :logger, :console,
 #   rootfs_overlay: "rootfs_overlay",
 #   fwup_conf: "config/fwup.conf"
 
+# Use shoehorn to start the main application. See the bootloader
 # docs for separating out critical OTP applications such as those
 # involved with firmware updates.
 config :shoehorn,
@@ -42,5 +34,4 @@ config :nerves_init_gadget,
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations
-
-# import_config "#{Mix.Project.config[:target]}.exs"
+import_config "#{Mix.Project.config[:target]}.exs"
