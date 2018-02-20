@@ -5,6 +5,18 @@
 # is restricted to this project.
 use Mix.Config
 
+config :eye, port: 80
+
+config :picam, camera: Picam.Camera
+
+config :logger,
+  level: :info,
+  utc_log: true
+
+config :logger, :console,
+  level: :info,
+  format: "$dateT$time [$level] $message\n"
+
 # Customize the firmware. Uncomment all or parts of the following
 # to add files to the root filesystem or modify the firmware
 # archive.
