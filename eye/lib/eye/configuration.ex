@@ -7,7 +7,9 @@ defmodule Eye.Configuration do
   """
 
   defstruct [
-    size: %{width: 1280, height: 720}
+    image_effect: :none,
+    size: %{width: 1280, height: 720},
+
   ]
 
   @typedoc @moduledoc

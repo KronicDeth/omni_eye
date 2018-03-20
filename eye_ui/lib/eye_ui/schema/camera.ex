@@ -4,6 +4,7 @@ defmodule EyeUi.Schema.CameraTypes do
   @desc "Camera configuration"
   object :camera_config do
     field :size, :dimensions
+    field :image_effect, :string
   end
 
   @desc "Image dimensions"

@@ -96,6 +96,7 @@ const setResolution = (socket, width, height) => {
           width
           height
         }
+        imageEffect
       }
     }`
   });
@@ -115,3 +116,26 @@ document.getElementById("1920x1080").onclick = (event) => {
   event.preventDefault();
   setResolution(absintheSocket, 1920, 1080);
 };
+
+const setImageEffect = (socket, imageEffect) => {
+  AbsintheSocket.send(socket, {
+    operation: `mutation {
+      updateEffect(effect: "${imageEffect}"){
+        size{
+        width
+        height}
+        imageEffect
+      } 
+    }`
+  });
+}
+
+document.getElementById("none").onclick = (event) => {
+    event.preventDefault();
+    setImageEffect(absintheSocket, "none");
+}
+
+document.getElementById("negative").onclick = (event) => {
+    event.preventDefault();
+    setImageEffect(absintheSocket, "negative");
+}

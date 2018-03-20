@@ -11,6 +11,10 @@ defmodule Eye.Camera do
     GenServer.call(__MODULE__, {:set_size, width, height})
   end
 
+  def set_image_effect(effect) do
+    GenServer.call(__MODULE__, {:set_image_effect, effect})
+  end
+
   defdelegate next_frame(), to: Picam
 
   # GenServer API
@@ -37,6 +41,21 @@ defmodule Eye.Camera do
       err ->
         {:reply, err, conf}
     end
+
   end
 
+  def handle_call({:set_image_effect, effect}, _from, conf) do
+    atom_effect = effect
+    |> String.to_existing_atom()
+
+    atom_effect
+    |> Picam.set_img_effect()
+    |> case do
+      :ok ->
+        conf = %{conf | image_effect: atom_effect}
+        {:reply, :ok, conf}
+      err -> {:reply, err, conf}
+    end
+
+  end
 end

@@ -29,7 +29,11 @@ defmodule EyeUi.Schema do
       arg :height, non_null(:integer)
       resolve &Resolvers.Camera.set_size/3
     end
+    field :update_effect, :camera_config do
 
+      arg :effect, :string
+      resolve &Resolvers.Camera.set_effect/3
+    end
   end
 
   subscription name: "Subscription" do
